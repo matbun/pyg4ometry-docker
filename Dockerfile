@@ -4,7 +4,7 @@ WORKDIR /dependencies
 
 # Generic dependencies
 RUN apt-get update && apt-get install -y \
-    tzdata libxt-dev libglx-dev libgl1-mesa-dev \
+    tzdata libxt-dev libglx-dev libgl1-mesa-dev libocct-foundation-dev \
     libboost-all-dev emacs xvfb x11vnc fvwm libcgal-dev git cmake tk8.6-dev \
     libmpfr-dev libgmp-dev pybind11-dev libxi-dev libxmu-dev python3 python3-pip python3.12-venv \
     software-properties-common && \
@@ -36,11 +36,6 @@ WORKDIR /app
 RUN python3 -m venv .venv && \
     source .venv/bin/activate && \
     pip install --no-cache-dir cython ipython pybind11 pandas distro vtk
-
-# Vtk
-#RUN wget https://www.vtk.org/files/release/9.2/vtk-9.2.0rc1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl && \
-#    pip install --no-cache-dir vtk-9.2.0rc1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl && \
-#    rm vtk-9.2.0rc1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
 
 # Install pyg4ometry
 RUN source .venv/bin/activate && \
