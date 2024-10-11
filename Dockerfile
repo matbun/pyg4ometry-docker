@@ -4,7 +4,7 @@ WORKDIR /dependencies
 
 # Generic dependencies
 RUN apt-get update && apt-get install -y \
-    tzdata libxt-dev libglx-dev libgl1-mesa-dev libocct-foundation-dev \
+    tzdata libxt-dev libglx-dev libgl1-mesa-dev \
     libboost-all-dev emacs xvfb x11vnc fvwm libcgal-dev git cmake tk8.6-dev \
     libmpfr-dev libgmp-dev pybind11-dev libxi-dev libxmu-dev python3 python3-pip python3.12-venv \
     software-properties-common && \
@@ -36,6 +36,8 @@ WORKDIR /app
 RUN python3 -m venv .venv && \
     source .venv/bin/activate && \
     pip install --no-cache-dir cython ipython pybind11 pandas distro vtk
+
+RUN apt-get update && apt-get install -y libocct-foundation-dev && rm -rf /var/lib/apt/lists/*
 
 # Install pyg4ometry
 RUN source .venv/bin/activate && \
